@@ -2,3 +2,26 @@ schema: '2.0'
 stages:
   download_reddit:
     cmd: mkdir -p data && wget http://snap.stanford.edu/jodie/reddit.csv -O data/reddit.csv
+    outs:
+    - path: data/reddit.csv
+      md5: ca8580e9045c7f25dc32107683b734a2
+      size: 2368348656
+  process_reddit_data:
+    cmd: python utils/preprocess_data.py --data reddit --bipartite
+    deps:
+    - path: data/reddit.csv
+      md5: ca8580e9045c7f25dc32107683b734a2
+      size: 2368348656
+    - path: utils/preprocess_data.py
+      md5: 8edfbcdeab4e63fc84890626f134b70c
+      size: 2242
+    outs:
+    - path: data/ml_reddit.csv
+      md5: f388aca804fad821bb6e8c3512755bff
+      size: 26870812
+    - path: data/ml_reddit.npy
+      md5: 02bac766285c84cc3b80fcb6a28d83f1
+      size: 925288576
+    - path: data/ml_reddit_node.npy
+      md5: ca50eee56df93d33ebc99548498bc1c5
+      size: 15115488

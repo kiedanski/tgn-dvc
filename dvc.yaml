@@ -1,3 +1,21 @@
 stages:
   download_reddit:
     cmd: mkdir -p data && wget http://snap.stanford.edu/jodie/reddit.csv -O data/reddit.csv
+    outs:
+      - data/reddit.csv
+  process_reddit_data:
+    cmd: python utils/preprocess_data.py --data reddit --bipartite
+    deps:
+    - data/reddit.csv
+    - utils/preprocess_data.py
+    outs:
+    - data/ml_reddit.npy
+    - data/ml_reddit.csv
+    - data/ml_reddit_node.npy
+
+  train_reddit_self-supervised:
+    cmd: python train_self_supervised.py -d reddit --use_memory --prefix tgn-attn-reddit --n_runs 10
+    deps:
+    - train_self_supervised.py 
+    - data/ml_reddit_node.npy
+    - data/ml_reddit.npy
