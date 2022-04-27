@@ -1,0 +1,3 @@
+stages:
+  download_reddit:
+    cmd: mkdir -p data && wget http://snap.stanford.edu/jodie/reddit.csv -O data/reddit.csv
