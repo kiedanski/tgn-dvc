@@ -25,3 +25,16 @@ stages:
     - path: data/ml_reddit_node.npy
       md5: ca50eee56df93d33ebc99548498bc1c5
       size: 15115488
+  train_reddit_self-supervised:
+    cmd: python train_self_supervised.py -d reddit --use_memory --prefix tgn-attn-reddit
+      --n_runs 1
+    deps:
+    - path: data/ml_reddit.npy
+      md5: 02bac766285c84cc3b80fcb6a28d83f1
+      size: 925288576
+    - path: data/ml_reddit_node.npy
+      md5: ca50eee56df93d33ebc99548498bc1c5
+      size: 15115488
+    - path: train_self_supervised.py
+      md5: a5cf066d04bb05f983acdc7cec8891c7
+      size: 15603

@@ -8,21 +8,12 @@ ENV LANG "en_US.UTF-8"
 ENV LANGUAGE "en_US.UTF-8"
 ENV LC_ALL "en_US.UTF-8"
 # update system and certificates
+
+COPY infra/apt-list.txt /tmp/apt-list.txt
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y\
-    ca-certificates  \
-    p7zip-full \
-    zip \
-    git \
-    build-essential \
-    less \
-    locales \
-    git \
-    curl \
-    wget \
-    software-properties-common && \
-    add-apt-repository -y ppa:deadsnakes/ppa && \
-    apt install --no-install-recommends -y python3.7-dev python3-pip python3-setuptools python3.7-distutils \
+    && apt-get install --no-install-recommends -y software-properties-common \
+    && add-apt-repository -y ppa:deadsnakes/ppa \
+    && xargs -a /tmp/apt-list.txt apt install --no-install-recommends -y \
     && update-ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 

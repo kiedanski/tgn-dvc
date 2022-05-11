@@ -1,0 +1,14 @@
+ca-certificates
+p7zip-full
+zip
+git
+build-essential
+less
+locales
+git
+curl
+wget
+python3.7-dev
+python3-pip
+python3-setuptools
+python3.7-distutils

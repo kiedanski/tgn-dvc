@@ -11,7 +11,7 @@
     "settings": {
         "editor.formatOnSave": true,
         "python.formatting.provider": "black",
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.defaultInterpreterPath": "/usr/bin/python",
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
         "python.formatting.blackPath": "/home/worker/.local/bin/black",
@@ -27,6 +27,9 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "christian-kohler.path-intellisense"
+    ],
+    "mounts": [
+        "source=${localWorkspaceFolder}/kaggle.json,target=/home/worker/.kaggle/kaggle.json,type=bind,consistency=cached",
     ],
     "workspaceMount": "source=${localWorkspaceFolder}/,target=/home/worker/workspace,type=bind",
     "workspaceFolder": "/home/worker/workspace",
