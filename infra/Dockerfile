@@ -9,6 +9,8 @@ ENV LANGUAGE "en_US.UTF-8"
 ENV LC_ALL "en_US.UTF-8"
 # update system and certificates
 
+RUN rm -rf /etc/apt/sources.list.d/cuda.list
+RUN rm -rf /etc/apt/sources.list.d/nvidia-ml.list
 COPY infra/apt-list.txt /tmp/apt-list.txt
 RUN apt-get update \
     && apt-get install --no-install-recommends -y software-properties-common \

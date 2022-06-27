@@ -5,8 +5,8 @@ import pandas as pd
 # %%
 DATA_DIR = "~/workspace/data/"
 # %%
-df_users = pd.read_csv(DATA_DIR + "/addresses_contracts.csv")
-df_contracts = pd.read_csv(DATA_DIR + "/addresses_contracts.csv")
+df_users = pd.read_csv(DATA_DIR + "/chain-nodes.csv")
+df_contracts = pd.read_csv(DATA_DIR + "/chain-edges.csv")
 # %%
 df_contracts["is_contract"] = True
 df_users["is_contract"] = False
@@ -34,8 +34,8 @@ addr_common = addr_trans.intersection(addr_node)
 # Filter by shard address
 df_nodes = df_nodes[df_nodes["address"].isin(addr_common)]
 df_trans = df_trans[
-    (df_trans["from_address"].isin(addr_common)) |
-    (df_trans["to_address"].isin(addr_common))
-] # <- This should not be empty
+    (df_trans["from_address"].isin(addr_common))
+    | (df_trans["to_address"].isin(addr_common))
+]  # <- This should not be empty
 # %%
 # %%
